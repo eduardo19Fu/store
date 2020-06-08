@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>Store | New Product</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+	th:href="@{../plugins/fontawesome-free/css/all.min.css}">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{../dist/css/adminlte.min.css}">
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Navbar -->
+		<header th:insert="shared/navbar :: menu-superior"></header>
+		<!-- /.navbar -->
+
+		<aside th:insert="shared/sidebar :: menu-lateral"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark">Create a Product</h1>
+						</div>
+						<!-- /.col -->
+
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- REGISTER PRODUCT -->
+							<!-- Card Start -->
+							<div class="card card-primary">
+								<div class="card-header">
+									<h3 class="card-title">Full all the fields</h3>
+								</div>
+								<!-- Form Start -->
+								<form>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="codigo">Code</label>
+													<input class="form-control" type="text" name="codigo" id="codigo" placeholder="Enter product code">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="nombre">Product Name</label>
+													<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Enter product name">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="preciocompra">Purchase Price</label>
+													<input class="form-control" type="number" step="0.01" name="preciocompra" id="preciocompra" placeholder="Enter Product Purchase Price">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="precioventa">Sale Price</label>
+													<input class="form-control" step="0.01" type="number" name="precioventa" id="precioventa" placeholder="Enter Product Sale Price">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="fechacompra">Purchase Date</label>
+													<input type="date" class="form-control" name="fechacompra" id="fechacompra">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="fechavencimiento">Due Date</label>
+													<input type="date" class="form-control" name="fechavencimiento" id="fechavencimiento">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="fabricante">Product Maker</label>
+													<select class="form-control" name="fabricante" id="fabricante">
+														<option th:value="${null}" selected>Choose a Product Maker</option>
+														<option th:each="maker : ${makers}" th:value="${maker.idfabricante}" th:text="${maker.fabricante}"></option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="familia">Product Family</label>
+													<select class="form-control" name="familia" id="familia">
+														<option th:value="${null}" selected>Choose a Product Family</option>
+														<option th:each="family : ${families}" th:value="${family.idproductofamilia}" th:text="${family.familia}"></option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="stucktienda">Store Stuck</label>
+													<input class="form-control" type="number" name="stucktienda" id="stucktienda" placeholder="Enter Store Stuck">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="stuckbodega">Warehouse Stuck</label>
+													<input type="number" class="form-control" step="1" min="0" pattern="^[0-9]+" name="stuckbodega" id="stuckbodega" placeholder="Enter Warehouse Stuck">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="porcentajeganancia">Percentage of Profit</label>
+													<input type="number" step="0.01" class="form-control" name="porcentajeganancia" id="porcentajeganancia" placeholder="Enter a Percentage of Profit">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="stuckminimotienda">Minimum Store Stuck</label>
+													<input type="number" class="form-control" step="1" name="stuckminimotienda" id="stuckminimotienda" placeholder="Enter Store Minimum Stuck">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="stuckminimobodega">Minimum Warehouse Sutck</label>
+													<input type="text" class="form-control" step="1" name="stuckminimobodega" id="stuckminimobodega" placeholder="Enter Warehouse Minimum Stuck">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for=""></label>
+													<select name="" id="">
+
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form> <!-- Form End -->
+							</div>
+							<!-- Card End -->
+						</div>
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer th:insert="shared/footer :: footer" class="main-footer"></footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+
+	<!-- jQuery -->
+	<script th:src="@{../plugins/jquery/jquery.min.js}"></script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{../dist/js/adminlte.min.js}"></script>
+</body>
+</html>

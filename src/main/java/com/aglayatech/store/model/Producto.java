@@ -2,21 +2,46 @@ package com.aglayatech.store.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "producto")
 public class Producto {
 
+	@Id
 	private String codigo;
 	private String nombreproducto;
 	private String preciocompra;
 	private String precioventa;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fechacompra;
-	private Date fechavenicimiento;
+	@Temporal(TemporalType.DATE)
+	private Date fechavencimiento;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idfabricante")
 	private Fabricante fabricante;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idfamilia")
 	private Familia familia;
-	private Integer stuckTienda;
-	private Integer stuckBodega;
+	
+	private Integer stucktienda;
+	private Integer stuckbodega;
 	private Double porcentajeganancia;
-	private Integer stuckMinimoTienda;
-	private Integer stuckMinimoBodega;
+	private Integer stuckminimotienda;
+	private Integer stuckminimobodega;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "estado")
 	private Estado estado;
 
 	public String getCodigo() {
@@ -59,12 +84,12 @@ public class Producto {
 		this.fechacompra = fechacompra;
 	}
 
-	public Date getFechavenicimiento() {
-		return fechavenicimiento;
+	public Date getFechavencimiento() {
+		return fechavencimiento;
 	}
 
-	public void setFechavenicimiento(Date fechavenicimiento) {
-		this.fechavenicimiento = fechavenicimiento;
+	public void setFechavencimiento(Date fechavenicimiento) {
+		this.fechavencimiento = fechavenicimiento;
 	}
 
 	public Fabricante getFabricante() {
@@ -83,20 +108,20 @@ public class Producto {
 		this.familia = familia;
 	}
 
-	public Integer getStuckTienda() {
-		return stuckTienda;
+	public Integer getStucktienda() {
+		return stucktienda;
 	}
 
-	public void setStuckTienda(Integer stuckTienda) {
-		this.stuckTienda = stuckTienda;
+	public void setStucktienda(Integer stuckTienda) {
+		this.stucktienda = stuckTienda;
 	}
 
-	public Integer getStuckBodega() {
-		return stuckBodega;
+	public Integer getStuckbodega() {
+		return stuckbodega;
 	}
 
-	public void setStuckBodega(Integer stuckBodega) {
-		this.stuckBodega = stuckBodega;
+	public void setStuckbodega(Integer stuckBodega) {
+		this.stuckbodega = stuckBodega;
 	}
 
 	public Double getPorcentajeganancia() {
@@ -107,20 +132,20 @@ public class Producto {
 		this.porcentajeganancia = porcentajeganancia;
 	}
 
-	public Integer getStuckMinimoTienda() {
-		return stuckMinimoTienda;
+	public Integer getStuckminimotienda() {
+		return stuckminimotienda;
 	}
 
-	public void setStuckMinimoTienda(Integer stuckMinimoTienda) {
-		this.stuckMinimoTienda = stuckMinimoTienda;
+	public void setStuckminimotienda(Integer stuckMinimoTienda) {
+		this.stuckminimotienda = stuckMinimoTienda;
 	}
 
-	public Integer getStuckMinimoBodega() {
-		return stuckMinimoBodega;
+	public Integer getStuckminimobodega() {
+		return stuckminimobodega;
 	}
 
-	public void setStuckMinimoBodega(Integer stuckMinimoBodega) {
-		this.stuckMinimoBodega = stuckMinimoBodega;
+	public void setStuckminimobodega(Integer stuckMinimoBodega) {
+		this.stuckminimobodega = stuckMinimoBodega;
 	}
 
 	public Estado getEstado() {

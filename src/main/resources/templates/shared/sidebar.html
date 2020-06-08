@@ -1,0 +1,82 @@
+<aside th:fragment="menu-lateral" class="main-sidebar sidebar-dark-primary elevation-4">
+	<!-- Brand Logo -->
+	<a th:href="@{/}" class="brand-link"> 
+		<img th:src="@{../dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+		<span class="brand-text font-weight-light">Store</span>
+	</a>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<!-- Sidebar user panel (optional) -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+			<div class="image"></div>
+		</div>
+	</div>
+
+	
+
+	<nav class="mt-2">
+		<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+			
+			<!-- MENU PRODUCTOS -->
+			<li class="nav-item has-treeview" th:classappend="${#request.getRequestURI().startsWith('/products') ? 'menu-open' : ''}">
+				<a href="#" class="nav-link" th:classappend="${#request.getRequestURI().startsWith('/products') ? 'active' : ''}"> 
+					<i class="nav-icon fab fa-product-hunt"></i>
+					<p>
+						Products <i class="right fas fa-angle-left"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a th:href="@{/products/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/products/index' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Products List</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{/products/create}" class="nav-link" th:classappend="${#request.getRequestURI() == '/products/create' ? 'active' : ''}"> 
+							<i class="far fa-circle nav-icon"></i>
+							<p>Create Product</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#">
+
+						</a>
+					</li>
+				</ul>
+			</li>
+			<!-- END PRODUCT MENU -->
+			
+			<!-- MENU CLIENTS -->
+			<li class="nav-item has-treeview" th:classappend="${#request.getRequestURI().startsWith('/clients') ? 'menu-open' : ''}">
+				<a href="#" class="nav-link" th:classappend="${#request.getRequestURI().startsWith('/clients') ? 'active' : ''}">
+					<i class="nav-icon fas fa-street-view"></i>
+					<p>
+						Clients <i class="right fas fa-angle-left"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a th:href="@{/clients/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/clients/index' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Clients List</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{/clients/big}" class="nav-link" th:classappend="${#request.getRequestURI() == '/clients/big' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Big Clients</p>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="#">
+
+						</a>
+					</li>
+				</ul>
+			</li>
+			<!-- END MENU CLIETS -->
+			
+		</ul>
+	</nav>
