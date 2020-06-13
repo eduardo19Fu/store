@@ -80,6 +80,7 @@ public class ProductoController {
 		model.addAttribute("families",families);
 	}
 	
+	@ModelAttribute
 	public void getEstados(Model model) {
 		List<Estado> states = serviceEstado.buscarTodos();
 		model.addAttribute("states", states);
