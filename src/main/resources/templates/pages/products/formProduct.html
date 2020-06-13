@@ -55,108 +55,113 @@
 						<div class="col-md-12">
 							<!-- REGISTER PRODUCT -->
 							<!-- Card Start -->
-							<div class="card card-primary">
+							<div class="card card-success">
 								<div class="card-header">
 									<h3 class="card-title">Full all the fields</h3>
 								</div>
 								<!-- Form Start -->
-								<form>
+								<form th:action="@{/products/save}" method="POST" th:object="${producto}">
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="codigo">Code</label>
-													<input class="form-control" type="text" name="codigo" id="codigo" placeholder="Enter product code">
+													<input class="form-control" type="text" th:field="*{codigo}" name="codigo" id="codigo" placeholder="Enter product code">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label for="nombre">Product Name</label>
-													<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Enter product name">
+													<label for="nombreproducto">Product Name</label>
+													<input class="form-control" type="text" th:field="*{nombreproducto}" name="nombreproducto" id="nombreproducto" placeholder="Enter product name">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="preciocompra">Purchase Price</label>
-													<input class="form-control" type="number" step="0.01" name="preciocompra" id="preciocompra" placeholder="Enter Product Purchase Price">
+													<input class="form-control" type="number" step="0.01" th:field="*{preciocompra}" name="preciocompra" id="preciocompra" placeholder="Enter Product Purchase Price">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="precioventa">Sale Price</label>
-													<input class="form-control" step="0.01" type="number" name="precioventa" id="precioventa" placeholder="Enter Product Sale Price">
+													<input class="form-control" step="0.01" type="number" th:field="*{precioventa}" name="precioventa" id="precioventa" placeholder="Enter Product Sale Price">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="fechacompra">Purchase Date</label>
-													<input type="date" class="form-control" name="fechacompra" id="fechacompra">
+													<input type="date" class="form-control" th:field="*{fechacompra}" name="fechacompra" id="fechacompra">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="fechavencimiento">Due Date</label>
-													<input type="date" class="form-control" name="fechavencimiento" id="fechavencimiento">
+													<input type="date" class="form-control" th:field="*{fechavencimiento}" name="fechavencimiento" id="fechavencimiento">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="fabricante">Product Maker</label>
-													<select class="form-control" name="fabricante" id="fabricante">
+													<select class="form-control" th:field="*{fabricante.idfabricante}" name="fabricante" id="fabricante">
 														<option th:value="${null}" selected>Choose a Product Maker</option>
-														<option th:each="maker : ${makers}" th:value="${maker.idfabricante}" th:text="${maker.fabricante}"></option>
+														<option th:each="maker : ${makers}" th:value="${maker.idfabricante}" th:text="${maker.nombrefabricante}"></option>
 													</select>
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="familia">Product Family</label>
-													<select class="form-control" name="familia" id="familia">
+													<select class="form-control" th:field="*{familia.idproductofamilia}" name="familia" id="familia">
 														<option th:value="${null}" selected>Choose a Product Family</option>
-														<option th:each="family : ${families}" th:value="${family.idproductofamilia}" th:text="${family.familia}"></option>
+														<option th:each="family : ${families}" th:value="${family.idproductofamilia}" th:text="${family.nombrefamilia}"></option>
 													</select>
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="stucktienda">Store Stuck</label>
-													<input class="form-control" type="number" name="stucktienda" id="stucktienda" placeholder="Enter Store Stuck">
+													<input class="form-control" type="number" th:field="*{stucktienda}" name="stucktienda" id="stucktienda" placeholder="Enter Store Stuck">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="stuckbodega">Warehouse Stuck</label>
-													<input type="number" class="form-control" step="1" min="0" pattern="^[0-9]+" name="stuckbodega" id="stuckbodega" placeholder="Enter Warehouse Stuck">
+													<input type="number" class="form-control" step="1" th:field="*{stuckbodega}" name="stuckbodega" id="stuckbodega" placeholder="Enter Warehouse Stuck">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="porcentajeganancia">Percentage of Profit</label>
-													<input type="number" step="0.01" class="form-control" name="porcentajeganancia" id="porcentajeganancia" placeholder="Enter a Percentage of Profit">
+													<input type="number" step="0.01" class="form-control" th:field="*{porcentajeganancia}" name="porcentajeganancia" id="porcentajeganancia" placeholder="Enter a Percentage of Profit">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="stuckminimotienda">Minimum Store Stuck</label>
-													<input type="number" class="form-control" step="1" name="stuckminimotienda" id="stuckminimotienda" placeholder="Enter Store Minimum Stuck">
+													<input type="number" class="form-control" step="1" th:field="*{stuckminimotienda}" name="stuckminimotienda" id="stuckminimotienda" placeholder="Enter Store Minimum Stuck">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="stuckminimobodega">Minimum Warehouse Sutck</label>
-													<input type="text" class="form-control" step="1" name="stuckminimobodega" id="stuckminimobodega" placeholder="Enter Warehouse Minimum Stuck">
+													<input type="text" class="form-control" step="1" th:field="*{stuckminimobodega}" name="stuckminimobodega" id="stuckminimobodega" placeholder="Enter Warehouse Minimum Stuck">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="estado">Status</label>
-													<select class="form-control" name="estado" id="estado">
-														<option value="#"></option>
+													<select class="form-control" th:field="*{estado.idestado}" name="estado" id="estado">
+														<option th:each="status : ${states}" th:value="${status.idestado}" th:text="${status.nombreestado}"></option>
 													</select>
 												</div>
 											</div>
 										</div>
+									</div><!--End card body-->
+
+									<div class="card-footer">
+										<button class="btn btn-primary col-sm-12">Save</button>
 									</div>
+
 								</form> <!-- Form End -->
 							</div>
 							<!-- Card End -->

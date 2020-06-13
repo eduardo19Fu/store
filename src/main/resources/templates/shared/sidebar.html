@@ -77,6 +77,28 @@
 				</ul>
 			</li>
 			<!-- END MENU CLIETS -->
-			
+
+			<!-- MENU PRODUCT FAMILIES -->
+			<li class="nav-item">
+				<a th:href="@{/families/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/families/index' ? 'active' : ''}">
+					<i class="nav-icon fas fa-ghost"></i>
+					<p>
+						Product Families
+					</p>
+				</a>
+			</li>
+			<!-- END MENU PRODUCT FAMILIES-->
+
+			<!-- MENU PRODUCTO MAKERS -->
+			<li class="nav-item">
+				<a th:href="@{/makers/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/makers/index' ? 'active' : ''}">
+					<i class="nav-icon fas fa-marker"></i>
+					<p>
+						Product Makers
+					</p>
+				</a>
+			</li>
+			<!-- END MENU PRODUCT MAKERS -->
+
 		</ul>
 	</nav>

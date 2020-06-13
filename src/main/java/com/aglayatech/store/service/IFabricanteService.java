@@ -9,5 +9,5 @@ public interface IFabricanteService {
 	List<Fabricante> buscarTodos();
 	Fabricante buscarPorId(Integer idfabricante);
 	void guardar(Fabricante fabricante);
-
+	void eliminar(Integer idfabricante);
 }

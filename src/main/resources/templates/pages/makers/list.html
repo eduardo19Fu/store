@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>Store | Products Makers List</title>
+
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" th:href="@{../plugins/fontawesome-free/css/all.min.css}">
+	<!-- Theme style -->
+	<link rel="stylesheet" th:href="@{../dist/css/adminlte.min.css}">
+	<!-- Google Font: Source Sans Pro -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{../../plugins/datatables-bs4/css/dataTables.bootstrap4.css}	">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- SweetAlert2 -->
+	<link rel="stylesheet" th:href="@{../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Navbar -->
+		<header th:insert="shared/navbar :: menu-superior"></header>
+		<!-- /.navbar -->
+
+		<aside th:insert="shared/sidebar :: menu-lateral"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+
+			<div id="message" class="swalDefaultSuccess" th:if="${message != null}">
+				
+			</div>
+
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<a th:href="@{/makers/create}" class="btn bg-gradient-success"><i class="fas fa-plus-square"></i> New</a>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+                                <h3 class="card-title">Makers List</h3><br>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body table-responsive">
+								<table id="productos_table" class="table table-bordered table-striped text-nowrap">
+									<thead>
+										<tr>
+											<th>Maker ID</th>
+                                            <th>Product Maker Name</th>
+                                            <th>Notes</th>
+											<th>Options</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="maker : ${makers}">
+											<td th:text="${maker.idfabricante}"></td>
+                                            <td th:text="${maker.nombrefabricante}"></td>
+                                            <td th:text="${maker.observaciones}"></td>
+											<td>
+												<a href="#" class="btn bg-gradient-primary"><i class="fas fa-edit"></i></a>
+												<a th:href="@{/makers/delete/{id} (id = ${maker.idfabricante})}" class="btn bg-gradient-danger"><i class="far fa-trash-alt"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer th:insert="shared/footer :: footer" class="main-footer">
+
+		</footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+
+	<!-- jQuery -->
+	<script th:src="@{../plugins/jquery/jquery.min.js}"></script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{../../plugins/datatables/jquery.dataTables.js}"></script>
+	<script th:src="@{../../plugins/datatables-bs4/js/dataTables.bootstrap4.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{../dist/js/adminlte.min.js}"></script>
+	<!-- SweetAlert2 -->
+	<script th:src="@{../../plugins/sweetalert2/sweetalert2.min.js}"></script>
+	<script>
+		  $(function () {
+		    $('#productos_table').DataTable({
+		      "paging": true,
+		      "lengthChange": true,
+		      "searching": true,
+		      "ordering": true,
+		      "info": true,
+		      "autoWidth": false,
+		    });
+		  });
+
+	</script>
+
+	<script th:inline="javascript">
+		/*<[CDATA[*/
+			var message = /*[[${message}]]*/ "Default";
+			$(function(){
+				const Toast = Swal.mixin({
+					toast: true,
+					position: 'top-end',
+					showConfirmButton: false,
+					timer: 6000
+				});
+
+				$('.swalDefaultSuccess').show(function() {
+					Toast.fire({
+						type: 'success',
+						title: message
+					})
+				});
+			});
+		/*]]>*/
+	</script>
+
+</body>
+</html>

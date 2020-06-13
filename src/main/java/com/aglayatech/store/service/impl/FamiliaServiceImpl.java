@@ -20,7 +20,7 @@ public class FamiliaServiceImpl implements IFamiliaService {
 	
 	@Override
 	public List<Familia> buscarTodos() {
-		return repoFamilia.findAll(Sort.by(Direction.ASC,"familia"));
+		return repoFamilia.findAll(Sort.by(Direction.ASC,"idproductofamilia"));
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class FamiliaServiceImpl implements IFamiliaService {
 	@Override
 	public void guardar(Familia familia) {
 		repoFamilia.save(familia);
+	}
+
+	@Override
+	public void eliminar(Integer idfamilia) {
+		repoFamilia.deleteById(idfamilia);
 	}
 
 }

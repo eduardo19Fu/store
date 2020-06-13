@@ -35,4 +35,9 @@ public class FabricanteServiceImpl implements IFabricanteService {
 		repoFabricante.save(fabricante);
 	}
 
+	@Override
+	public void eliminar(Integer idfabricante) {
+		repoFabricante.deleteById(idfabricante);
+	}
+
 }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>Store | New Product</title>
+
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" th:href="@{../plugins/fontawesome-free/css/all.min.css}">
+	<!-- Ionicons -->
+	<link rel="stylesheet"href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" th:href="@{../dist/css/adminlte.min.css}">
+	<!-- Google Font: Source Sans Pro -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Navbar -->
+		<header th:insert="shared/navbar :: menu-superior"></header>
+		<!-- /.navbar -->
+
+		<aside th:insert="shared/sidebar :: menu-lateral"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark">Create a Product Family</h1>
+						</div>
+						<!-- /.col -->
+
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- REGISTER PRODUCT -->
+							<!-- Card Start -->
+							<div class="card card-success">
+								<div class="card-header">
+									<h3 class="card-title">Full all the fields</h3>
+								</div>
+								<!-- Form Start -->
+								<form th:action="@{/families/save}" method="post" th:object="${familia}">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="familia">Family</label>
+													<input type="hidden" th:field="*{idproductofamilia}">
+													<input type="text" class="form-control" th:field="*{nombrefamilia}" name="nombrefamilia" id="nombrefamilia" placeholder="Enter Family Name" required>
+												</div>
+											</div>
+										</div>
+									</div><!--End card body-->
+
+									<div class="card-footer">
+										<button type="submit" class="btn btn-primary col-sm-12">Save</button>
+									</div>
+
+								</form> <!-- Form End -->
+							</div>
+							<!-- Card End -->
+						</div>
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer th:insert="shared/footer :: footer" class="main-footer"></footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+
+	<!-- jQuery -->
+	<script th:src="@{../plugins/jquery/jquery.min.js}"></script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{../dist/js/adminlte.min.js}"></script>
+</body>
+</html>

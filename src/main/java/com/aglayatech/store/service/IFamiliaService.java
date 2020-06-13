@@ -9,5 +9,5 @@ public interface IFamiliaService {
 	List<Familia> buscarTodos();
 	Familia buscarPorId(Integer idfamilia);
 	void guardar(Familia familia);
-
+	void eliminar(Integer idfamilia);
 }

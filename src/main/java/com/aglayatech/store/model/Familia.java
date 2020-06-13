@@ -13,7 +13,7 @@ public class Familia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idproductofamilia;
-	private String familia;
+	private String nombrefamilia;
 
 	public Integer getIdproductofamilia() {
 		return idproductofamilia;
@@ -23,12 +23,17 @@ public class Familia {
 		this.idproductofamilia = idproductofamilia;
 	}
 
-	public String getFamilia() {
-		return familia;
+	public String getNombrefamilia() {
+		return nombrefamilia;
 	}
 
-	public void setFamilia(String familia) {
-		this.familia = familia;
+	public void setNombrefamilia(String nombrefamilia) {
+		this.nombrefamilia = nombrefamilia;
+	}
+
+	@Override
+	public String toString() {
+		return "Familia [idproductofamilia=" + idproductofamilia + ", nombrefamilia=" + nombrefamilia + "]";
 	}
 
 }

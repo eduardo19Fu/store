@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.aglayatech.store.model.Estado;
 import com.aglayatech.store.model.Fabricante;
 import com.aglayatech.store.model.Familia;
 import com.aglayatech.store.model.Producto;
+import com.aglayatech.store.service.IEstadoService;
 import com.aglayatech.store.service.IFabricanteService;
 import com.aglayatech.store.service.IFamiliaService;
 import com.aglayatech.store.service.IProductoService;
@@ -38,6 +40,9 @@ public class ProductoController {
 	@Autowired
 	private IFamiliaService serviceFamilia;
 	
+	@Autowired
+	private IEstadoService serviceEstado;
+	
 	@GetMapping(value = "/index")
 	public String productosIndex(Model model) {
 		List<Producto> lista = serviceProducto.buscarTodos();
@@ -47,7 +52,7 @@ public class ProductoController {
 	
 	@GetMapping(value = "/create")
 	public String create(Producto producto) {
-		return "pages/products/formCreate";
+		return "pages/products/formProduct";
 	}
 	
 	@PostMapping(value = "/save")
@@ -60,7 +65,7 @@ public class ProductoController {
 	public String edit(@PathVariable("id") String codigo, Model model) {
 		Producto product = serviceProducto.buscarPorId(codigo);
 		model.addAttribute("product",product);
-		return "products/fromCreate";
+		return "pages/products/fromProduct";
 	}
 	
 	@ModelAttribute
@@ -73,6 +78,11 @@ public class ProductoController {
 	public void getFamilias(Model model) {
 		List<Familia> families = serviceFamilia.buscarTodos();
 		model.addAttribute("families",families);
+	}
+	
+	public void getEstados(Model model) {
+		List<Estado> states = serviceEstado.buscarTodos();
+		model.addAttribute("states", states);
 	}
 	
 	@InitBinder
