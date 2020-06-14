@@ -1,10 +1,25 @@
 package com.aglayatech.store.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "clientemayor")
 public class ClienteMayor {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idclientemayor;
 	private String telefono;
 	private String email;
+	
+	@OneToOne
+	@JoinColumn(name = "idcliente")
 	private Cliente cliente;
 
 	public Integer getIdclientemayor() {
