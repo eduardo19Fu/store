@@ -7,7 +7,7 @@ import com.aglayatech.store.model.Producto;
 public interface IProductoService {
 	
 	List<Producto> buscarTodos();
-	Producto buscarPorId(String codigo);
+	Producto buscarPorId(Integer idproducto);
 	void guardar(Producto producto);
-
+	void eliminar(Integer idproducto);
 }

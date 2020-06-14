@@ -40,6 +40,13 @@ public class FabricanteController {
 		return "redirect:/makers/index";
 	}
 	
+	@GetMapping(value = "/edit/{id}")
+	public String edit(@PathVariable("id") int idfabricante, Model model) {
+		Fabricante maker = serviceFabricante.buscarPorId(idfabricante);
+		model.addAttribute("fabricante", maker);
+		return "pages/makers/formMaker";
+	}
+	
 	@GetMapping(value = "/delete/{id}")
 	public String delete(@PathVariable("id") int idfabricante, RedirectAttributes attributes) {
 		serviceFabricante.eliminar(idfabricante);

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,33 +18,43 @@ import javax.persistence.TemporalType;
 public class Producto {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idproducto;
 	private String codigo;
 	private String nombreproducto;
 	private String preciocompra;
 	private String precioventa;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date fechacompra;
 	@Temporal(TemporalType.DATE)
 	private Date fechavencimiento;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idfabricante")
 	private Fabricante fabricante;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idfamilia")
 	private Familia familia;
-	
+
 	private Integer stucktienda;
 	private Integer stuckbodega;
 	private Double porcentajeganancia;
 	private Integer stuckminimotienda;
 	private Integer stuckminimobodega;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "estado")
 	private Estado estado;
+
+	public Integer getIdproducto() {
+		return idproducto;
+	}
+
+	public void setIdproducto(Integer idproducto) {
+		this.idproducto = idproducto;
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -154,6 +166,16 @@ public class Producto {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [idproducto=" + idproducto + ", codigo=" + codigo + ", nombreproducto=" + nombreproducto
+				+ ", preciocompra=" + preciocompra + ", precioventa=" + precioventa + ", fechacompra=" + fechacompra
+				+ ", fechavencimiento=" + fechavencimiento + ", fabricante=" + fabricante + ", familia=" + familia
+				+ ", stucktienda=" + stucktienda + ", stuckbodega=" + stuckbodega + ", porcentajeganancia="
+				+ porcentajeganancia + ", stuckminimotienda=" + stuckminimotienda + ", stuckminimobodega="
+				+ stuckminimobodega + ", estado=" + estado + "]";
 	}
 
 }

@@ -8,18 +8,23 @@
 
 <title>Store | New Product</title>
 
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-	th:href="@{../plugins/fontawesome-free/css/all.min.css}">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" th:href="@{../dist/css/adminlte.min.css}">
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" th:href="@{../../plugins/fontawesome-free/css/all.min.css}">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" th:href="@{../../dist/css/adminlte.min.css}">
+	<!-- SweetAlert2 -->
+	<link rel="stylesheet" th:href="@{../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
+	<!-- Toastr -->
+	<link rel="stylesheet" th:href="@{../../plugins/toastr/toastr.min.css}">
+	<!-- Theme style -->
+	<link rel="stylesheet" th:href="@{../../dist/css/adminlte.min.css}">
+	<!-- Google Font: Source Sans Pro -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+	
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+	
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -32,6 +37,9 @@
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
+			<div th:if="${errors != null}" class="toastsDefaultDanger">
+
+			</div>
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
@@ -66,6 +74,7 @@
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="codigo">Code</label>
+													<input type="hidden" th:field="*{idproducto}">
 													<input class="form-control" type="text" th:field="*{codigo}" name="codigo" id="codigo" placeholder="Enter product code">
 												</div>
 											</div>
@@ -90,13 +99,13 @@
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="fechacompra">Purchase Date</label>
-													<input type="date" class="form-control" th:field="*{fechacompra}" name="fechacompra" id="fechacompra">
+													<input type="text" class="form-control" th:field="*{fechacompra}" name="fechacompra" id="fechacompra">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="fechavencimiento">Due Date</label>
-													<input type="date" class="form-control" th:field="*{fechavencimiento}" name="fechavencimiento" id="fechavencimiento">
+													<input type="text" class="form-control" th:field="*{fechavencimiento}" name="fechavencimiento" id="fechavencimiento">
 												</div>
 											</div>
 											<div class="col-sm-6">
@@ -159,7 +168,7 @@
 									</div><!--End card body-->
 
 									<div class="card-footer">
-										<button class="btn btn-primary col-sm-12">Save</button>
+										<button type="submit" class="btn btn-primary col-sm-12">Save</button>
 									</div>
 
 								</form> <!-- Form End -->
@@ -183,14 +192,31 @@
 	<!-- REQUIRED SCRIPTS -->
 
 	<!-- jQuery -->
-	<script th:src="@{../plugins/jquery/jquery.min.js}"></script>
+	<script th:src="@{../../plugins/jquery/jquery.min.js}"></script>
+	<!-- jQuery for datepicker -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Bootstrap 4 -->
-	<script th:src="@{../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<!-- AdminLTE App -->
-	<script th:src="@{../dist/js/adminlte.min.js}"></script>
+	<script th:src="@{../../dist/js/adminlte.min.js}"></script>
 	<!-- SweetAlert2 -->
-	<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+	<script th:src="@{../../plugins/sweetalert2/sweetalert2.min.js}"></script>
 	<!-- Toastr -->
-	<script src="../../plugins/toastr/toastr.min.js"></script>
+	<script th:src="@{../../plugins/toastr/toastr.min.js}"></script>
+	<!--Calling Error Toast-->
+	<script th:inline="javascript">
+		/*<[CDATA[*/
+			var errors = /*[[${errors}]]*/ "Default";
+		/*]]>*/
+			$(function(){
+				
+			});
+		
+			$( function() {
+			    $( "#fechacompra" ).datepicker({dateFormat: 'dd-mm-yy'});
+			    $("#fechavencimiento").datepicker({dateFormat: 'dd-mm-yy'});
+			  } );
+		
+	</script>
 </body>
 </html>

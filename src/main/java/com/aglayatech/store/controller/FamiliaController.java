@@ -49,6 +49,13 @@ public class FamiliaController {
 		}
 	}
 	
+	@GetMapping(value = "/edit/{id}")
+	public String edit(@PathVariable("id") int idfamilia,Model model) {
+		Familia family = serviceFamilia.buscarPorId(idfamilia);
+		model.addAttribute("familia", family);
+		return "pages/families/formFamily";
+	}
+	
 	@GetMapping(value = "/delete/{id}")
 	public String delete(@PathVariable("id") int idfamilia, RedirectAttributes attributes) {
 		serviceFamilia.eliminar(idfamilia);

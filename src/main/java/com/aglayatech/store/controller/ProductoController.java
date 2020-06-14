@@ -1,6 +1,7 @@
 package com.aglayatech.store.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -46,7 +48,7 @@ public class ProductoController {
 	@GetMapping(value = "/index")
 	public String productosIndex(Model model) {
 		List<Producto> lista = serviceProducto.buscarTodos();
-		model.addAttribute("prductos", lista);
+		model.addAttribute("products", lista);
 		return "pages/products/list";
 	}
 	
@@ -56,16 +58,36 @@ public class ProductoController {
 	}
 	
 	@PostMapping(value = "/save")
-	public String save(Producto producto, BindingResult result, RedirectAttributes attributes) {
+	public String save(Producto producto, BindingResult result, RedirectAttributes attributes, Model model) {
+		List<String> errors = new ArrayList<>();
+		
+		// Obteniendo listado de errores de haberlos.
+		if(result.hasErrors()) {
+			for(ObjectError error : result.getAllErrors()) {
+				System.out.println(error.getDefaultMessage());
+				errors.add(error.getDefaultMessage());
+			}
+			
+			model.addAttribute("errors", errors);
+		}
+		
 		serviceProducto.guardar(producto);
+		attributes.addFlashAttribute("message", "Register was successfully made!");
 		return "redirect:/products/index";
 	}
 	
 	@GetMapping(value = "/edit/{id}")
-	public String edit(@PathVariable("id") String codigo, Model model) {
-		Producto product = serviceProducto.buscarPorId(codigo);
-		model.addAttribute("product",product);
-		return "pages/products/fromProduct";
+	public String edit(@PathVariable("id") int idproducto, Model model) {
+		Producto product = serviceProducto.buscarPorId(idproducto);
+		model.addAttribute("producto",product);
+		return "pages/products/formProduct";
+	}
+	
+	@GetMapping(value = "/delete/{id}")
+	public String delete(@PathVariable("id") int idproducto, RedirectAttributes attributes) {
+		serviceProducto.eliminar(idproducto);
+		attributes.addFlashAttribute("message", "Register was successfully deleted!");
+		return "redirect:/products/index";
 	}
 	
 	@ModelAttribute
