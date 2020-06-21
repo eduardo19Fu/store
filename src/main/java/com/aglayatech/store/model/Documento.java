@@ -1,7 +1,10 @@
 package com.aglayatech.store.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,29 +12,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "documento")
-public class Documento {
+public class Documento implements Serializable{
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idtransaccion;
 	private Integer noDocumento;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaEmision;
 	private Double total;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idcliente")
 	private Cliente cliente;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idvendedor")
 	private Usuario usuario;
 	private String serie;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "estado")
 	private Estado estado;
@@ -39,6 +48,15 @@ public class Documento {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tipoDocumento")
 	private TipoDocumento tipoDocumento;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idtransaccion")
+	private List<DetalleDocumento> detalleDocumento;
+	
+	@PrePersist
+	public void prePersist() {
+		this.fechaEmision = new Date();
+	}
 
 	public Integer getIdtransaccion() {
 		return idtransaccion;
@@ -110,6 +128,23 @@ public class Documento {
 
 	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
+	}
+	
+	public Double calcularTotal() {
+		Double total = 0.00;
+		for(int i = 0; i < detalleDocumento.size(); i++) {
+			total += detalleDocumento.get(i).calcularSubtotal();
+		}
+		return total;
+	}
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return "Documento [idtransaccion=" + idtransaccion + ", noDocumento=" + noDocumento + ", fechaEmision="
+				+ fechaEmision + ", total=" + total + ", cliente=" + cliente + ", usuario=" + usuario + ", serie="
+				+ serie + ", estado=" + estado + ", tipoDocumento=" + tipoDocumento + "]";
 	}
 
 }

@@ -22,8 +22,8 @@ public class Producto {
 	private Integer idproducto;
 	private String codigo;
 	private String nombreproducto;
-	private String preciocompra;
-	private String precioventa;
+	private Double preciocompra;
+	private Double precioventa;
 
 	@Temporal(TemporalType.DATE)
 	private Date fechacompra;
@@ -72,19 +72,19 @@ public class Producto {
 		this.nombreproducto = nombreproducto;
 	}
 
-	public String getPreciocompra() {
+	public Double getPreciocompra() {
 		return preciocompra;
 	}
 
-	public void setPreciocompra(String preciocompra) {
+	public void setPreciocompra(Double preciocompra) {
 		this.preciocompra = preciocompra;
 	}
 
-	public String getPrecioventa() {
+	public Double getPrecioventa() {
 		return precioventa;
 	}
 
-	public void setPrecioventa(String precioventa) {
+	public void setPrecioventa(Double precioventa) {
 		this.precioventa = precioventa;
 	}
 
