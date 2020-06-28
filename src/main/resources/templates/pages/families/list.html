@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>Store | Listado de Productos</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<title>Store | Listado de Familias</title>
 
 	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" th:href="@{../plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{../../plugins/fontawesome-free/css/all.min.css}">
 	<!-- Theme style -->
-	<link rel="stylesheet" th:href="@{../dist/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{../../dist/css/adminlte.min.css}">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{../../plugins/datatables-bs4/css/dataTables.bootstrap4.css}	">
@@ -18,6 +19,7 @@
 	<!-- SweetAlert2 -->
 	<link rel="stylesheet" th:href="@{../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
 </head>
+
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
@@ -30,17 +32,18 @@
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 
-			<!-- SHOW ERROR MESSAGE -->
+			<!-- SHOW ERROR MESSAGE 
 			<div id="message" class="swalDefaultSuccess" th:if="${message != null}">
 				
-			</div>
+			</div>-->
 
 			<!-- Content Header (Page header) -->
 			<div class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<a th:href="@{/families/create}" class="btn bg-gradient-success"><i class="fas fa-plus-square"></i> New</a>
+							<a th:href="@{/families/create}" class="btn bg-gradient-success"><i
+									class="fas fa-plus-square"></i> New</a>
 						</div>
 						<!-- /.col -->
 					</div>
@@ -49,6 +52,10 @@
 				<!-- /.container-fluid -->
 			</div>
 			<!-- /.content-header -->
+
+			<!--MODAL WINDOW FOR CLIENT REGISTER-->
+
+			<!--END MODAL-->
 
 			<!-- Main content -->
 			<section class="content">
@@ -67,7 +74,6 @@
 											<th>ID Family</th>
 											<th>Product Family Name</th>
 											<th>Options</th>
-											
 										</tr>
 									</thead>
 									<tbody>
@@ -75,8 +81,14 @@
 											<td th:text="${family.idproductofamilia}"></td>
 											<td th:text="${family.nombrefamilia}"></td>
 											<td>
-												<a th:href="@{/families/edit/{id} (id = ${family.idproductofamilia})}" class="btn bg-gradient-primary"><i class="fas fa-edit"></i></a>
-												<a th:href="@{/families/delete/{id} (id = ${family.idproductofamilia}) }" class="btn bg-gradient-danger"><i class="fas fa-trash-alt"></i></a>
+												<a th:href="@{/families/edit/{id} (id = ${family.idproductofamilia})}"
+													class="btn bg-gradient-primary">
+													<i class="fas fa-edit"></i>
+												</a>
+												<a th:href="@{/families/delete/{id} (id = ${family.idproductofamilia}) }"
+													class="btn bg-gradient-danger">
+													<i class="fas fa-trash-alt"></i>
+												</a>
 											</td>
 										</tr>
 									</tbody>
@@ -100,48 +112,51 @@
 	<!-- REQUIRED SCRIPTS -->
 
 	<!-- jQuery -->
-	<script th:src="@{../plugins/jquery/jquery.min.js}"></script>
+	<script th:src="@{../../plugins/jquery/jquery.min.js}"></script>
 	<!-- Bootstrap 4 -->
-	<script th:src="@{../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{../../plugins/datatables/jquery.dataTables.js}"></script>
 	<script th:src="@{../../plugins/datatables-bs4/js/dataTables.bootstrap4.js}"></script>
 	<!-- AdminLTE App -->
 	<script th:src="@{../../dist/js/adminlte.min.js}"></script>
 	<!-- SweetAlert2 -->
 	<script th:src="@{../../plugins/sweetalert2/sweetalert2.min.js}"></script>
+	<script th:src="@{../../dist/js/myscripts/confirmAlert.js}"></script>
 	<script>
-		  $(function () {
-		    $('#productos_table').DataTable({
-		      "paging": true,
-		      "lengthChange": true,
-		      "searching": true,
-		      "ordering": true,
-		      "info": true,
-		      "autoWidth": false,
-		    });
-		  });
+		$(function () {
+			$('#productos_table').DataTable({
+				"paging": true,
+				"lengthChange": true,
+				"searching": true,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false,
+			});
+		});
 	</script>
 
 	<script th:inline="javascript">
-		
-		/*<![CDATA[*/
-			var message = /*[[${message}]]*/ "Test";
-			$(function(){
-				const Toast = Swal.mixin({
-					toast: true,
-					position: 'top-end',
-					showConfirmButton: false,
-					timer: 6000
-				});
 
-				$('.swalDefaultSuccess').show(function() {
-					Toast.fire({
-						type: 'success',
-						title: ' ' + message
-					})
-				});
+		/*<![CDATA[*/
+		var message = /*[[${message}]]*/ "Test";
+		$(function () {
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 6000
 			});
+
+			$('.swalDefaultSuccess').show(function () {
+				Toast.fire({
+					type: 'success',
+					title: ' ' + message
+				})
+			});
+		});
 		/*]]>*/
 	</script>
+
 </body>
+
 </html>
