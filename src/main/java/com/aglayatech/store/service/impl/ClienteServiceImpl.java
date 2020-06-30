@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aglayatech.store.errorhandler.ObjetoNoEncontradoException;
 import com.aglayatech.store.model.Cliente;
 import com.aglayatech.store.repository.ClienteRepository;
 import com.aglayatech.store.service.IClienteService;
@@ -24,11 +25,7 @@ public class ClienteServiceImpl implements IClienteService {
 	@Override
 	public Cliente buscarPorId(Integer idcliente) {
 		Optional<Cliente> optional = repoCliente.findById(idcliente);
-		
-		if(optional.isPresent())
-			return optional.get();
-		else
-			return null;
+		return optional.orElseThrow(() -> new ObjetoNoEncontradoException(String.valueOf(idcliente)));
 	}
 
 	@Override

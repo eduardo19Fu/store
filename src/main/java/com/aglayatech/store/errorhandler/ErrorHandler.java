@@ -27,5 +27,14 @@ public class ErrorHandler {
 		model.addAttribute("timestamp", new Date());
 		return "error/genericos";
 	}
+	
+	@ExceptionHandler(ObjetoNoEncontradoException.class)
+	public String objetoNoEncontradoError(Exception ex, Model model) {
+		model.addAttribute("error", "Error: Objeto no encontrado!");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestamp", new Date());
+		return "error/genericos";
+	}
 
 }

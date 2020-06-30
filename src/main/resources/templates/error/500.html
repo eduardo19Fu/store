@@ -42,8 +42,10 @@
 					<h5><i class="icon fas fa-ban"></i> <span th:text="${error}"></span></h5>
 					<hr>
 					<p th:text="${message}"></p>
-					<p th:text="'HttpStatus = ' + ${status}"></p>
+					<p th:text="'HttpStatus: ' + ${status}"></p>
 					<p th:text="${timestamp}"></p>
+					<hr>
+					<p th:text="${trace}"></p>
 				  </div>
 			</div>
 			<!-- /.container-fluid -->

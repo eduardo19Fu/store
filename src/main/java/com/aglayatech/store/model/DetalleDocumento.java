@@ -2,6 +2,7 @@ package com.aglayatech.store.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,24 +18,26 @@ public class DetalleDocumento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idDetalle;
+	private Long iddetalle;
 
 	private Integer cantidad;
 	private Double subtotal;
 	private Double descuento;
 	private String serie;
+	
+	@Column(name = "nprecio_venta")
 	private Double nprecioVenta;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idproducto")
 	private Producto producto;
 
-	public Long getIdDetalle() {
-		return idDetalle;
+	public Long getIddetalle() {
+		return iddetalle;
 	}
 
-	public void setIdDetalle(Long idDetalle) {
-		this.idDetalle = idDetalle;
+	public void setIddetalle(Long iddetalle) {
+		this.iddetalle = iddetalle;
 	}
 
 	public Integer getCantidad() {
@@ -100,11 +103,5 @@ public class DetalleDocumento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	public String toString() {
-		return "DetalleDocumento [idDetalle=" + idDetalle + ", cantidad=" + cantidad + ", subtotal=" + subtotal
-				+ ", descuento=" + descuento + ", serie=" + serie + ", nprecioVenta=" + nprecioVenta + ", producto="
-				+ producto + "]";
-	}
 
 }
