@@ -69,14 +69,34 @@
 							<p>Big Clients</p>
 						</a>
 					</li>
-					<li class="nav-link">
-						<a href="#">
+				</ul>
+			</li>
+			<!-- END MENU CLIETS -->
 
+			<!-- MENU DOCUMENTS -->
+			<li class="nav-item has-treeview" th:classappend="${#request.getRequestURI().startsWith('/documents') ? 'menu-open' : ''}">
+				<a href="#" class="nav-link" th:classappend="${#request.getRequestURI().startsWith('/documents') ? 'active' : ''}">
+					<i class="nav-icon fas fa-file-invoice-dollar"></i>
+					<p>
+						Documents <i class="right fas fa-angle-left"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a th:href="@{/clients/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/bills/index' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Bills</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{/clients/big}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/quotes/index' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Products Quote</p>
 						</a>
 					</li>
 				</ul>
 			</li>
-			<!-- END MENU CLIETS -->
+			<!-- END MENU DOCUMENTS -->
 
 			<!-- MENU PRODUCT FAMILIES -->
 			<li class="nav-item">

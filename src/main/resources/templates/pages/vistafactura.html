@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="'Factura No.: ' + ${documento.noDocumento}"></h1>
+	<h3 th:text="'Total: ' + ${documento.total} "></h3>
+	<ul>
+		<li th:each="item : ${documento.detalleDocumento}">
+			<span th:text="${item.subtotal}"></span>
+		</li>
+	</ul>
+</body>
+</html>

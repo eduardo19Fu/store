@@ -32,6 +32,9 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
+							<a th:href="@{/clients/create}" class="btn bg-gradient-success">
+								<i class="fas fa-plus-square"></i>&nbsp; New
+							</a>
 						</div>
 						<!-- /.col -->
 					</div>
@@ -40,6 +43,10 @@
 				<!-- /.container-fluid -->
 			</div>
 			<!-- /.content-header -->
+
+			<div id="message" th:if="${message != null}" class="swalDefaultSuccess">
+
+			</div>
 
 			<!-- Main content -->
 			<section class="content">
@@ -55,35 +62,27 @@
 								<table id="productos_table" class="table table-bordered table-striped text-nowrap">
 									<thead>
 										<tr>
-											<th>Código</th>
-											<th>Nombre</th>
-											<th>P. Compra</th>
-											<th>P. Venta</th>
-											<th>F. Compra</th>
-											<th>Fabricante</th>
-											<th>Familia</th>
-											<th>Stuck Tienda</th>
-											<th>Stuck Bodega</th>
-											<th>Estado</th>
-											<th>Op</th>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Address</th>
+											<th>NIT</th>
+											<th>Options</th>
 											
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="product : ${products}">
-											<td th:text="${product.codigo}"></td>
-											<td th:text="${product.nombre}"></td>
-											<td th:text="${product.preciocompra}"></td>
-											<td th:text="${product.precioventa}"></td>
-											<td th:text="${producto.fechacompra}"></td>
-											<td th:text="${product.fabricante.fabricante}"></td>
-											<td th:text="${product.familia.familia}"></td>
-											<td th:text="${product.stucktienda}"></td>
-											<td th:text="${product.stuckbodega}"></td>
-											<td th:text="${product.estado.estado}"></td>
+										<tr th:each="client : ${clients}">
+											<td th:text="${client.idcliente}"></td>
+											<td th:text="${client.nombre}"></td>
+											<td th:text="${client.direccion}"></td>
+											<td th:text="${client.nit}"></td>
 											<td>
-												<a th:href="#" class="btn btn-gradient-primary"></a>
-												<a th:href="#" class="btn btn-gradient-danger"></a>
+												<a th:href="@{/clients/edit/{id} (id = ${client.idcliente})}" class="btn bg-gradient-primary">
+													<i class="fas fa-edit"></i>
+												</a>
+												<a th:href="@{/clients/delete/{id} (id = ${client.idcliente})}" class="btn bg-gradient-danger">
+													<i class="fas fa-trash-alt"></i>
+												</a>
 											</td>
 										</tr>
 									</tbody>
@@ -125,6 +124,26 @@
 		      "autoWidth": false,
 		    });
 		  });
+	</script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var message = /*[[${message}]]*/ "Test";
+		$(function () {
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 6000
+			});
+
+			$('.swalDefaultSuccess').show(function () {
+				Toast.fire({
+					type: 'success',
+					title: ' ' + message
+				})
+			});
+		});
+		/*]]>*/
 	</script>
 </body>
 </html>

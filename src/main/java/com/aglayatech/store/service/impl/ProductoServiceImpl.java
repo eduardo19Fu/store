@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aglayatech.store.errorhandler.ObjetoNoEncontradoException;
 import com.aglayatech.store.model.Producto;
 import com.aglayatech.store.repository.ProductoRepository;
 import com.aglayatech.store.service.IProductoService;
@@ -24,11 +25,7 @@ public class ProductoServiceImpl implements IProductoService {
 	@Override
 	public Producto buscarPorId(Integer idproducto) {
 		Optional<Producto> optional = repoProducto.findById(idproducto);
-		if (optional.isPresent()) {
-			return optional.get();
-		} else {
-			return null;
-		}
+		return optional.orElseThrow(() -> new ObjetoNoEncontradoException(String.valueOf(idproducto)));
 	}
 
 	@Override
