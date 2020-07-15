@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<title>Store | New Bill</title>
+
+	<!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{../../plugins/fontawesome-free/css/all.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" th:href="@{../../plugins/daterangepicker/daterangepicker.css}">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" th:href="@{../../plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" th:href="@{../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css}">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" th:href="@{../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+    <!-- Select2 -->
+    <link rel="stylesheet" th:href="@{../../plugins/select2/css/select2.min.css}">
+    <link rel="stylesheet" th:href="@{../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" th:href="@{../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{../../dist/css/adminlte.min.css}">
+    <!-- Google Font: Source Sans Pro -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+	<link rel="stylesheet" th:href="@{../../plugins/jquery-ui/jquery-ui.min.css}">
+	
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Navbar -->
+		<header th:insert="shared/navbar :: menu-superior"></header>
+		<!-- /.navbar -->
+
+		<aside th:insert="shared/sidebar :: menu-lateral"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark">New Bill</h1>
+						</div>
+						<!-- /.col -->
+
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- REGISTER PRODUCT -->
+							<!-- Card Start -->
+							<div class="card card-success">
+								<div class="card-header">
+									<h3 class="card-title">Full all the fields</h3>
+								</div>
+								<!-- Form Start -->
+								<form th:action="@{/documents/bills/save}" method="POST" th:object="${documento}">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="client">Client</label>
+                                                    <select th:field="*{cliente.idcliente}" class="form-control select2" style="width: 100%;">
+                                                        <option th:value="${null}" selected>Choose a Client</option>
+                                                        <option th:each="cliente : ${clientes}" th:value="${cliente.idcliente}" th:text="${cliente.nombre}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="seller">Seller</label>
+                                                    <select th:field="*{usuario.idusuario}" class="form-control select2" style="width: 100%;">
+                                                        <option th:value="${null}" selected>Choose a User</option>
+                                                        <option th:each="usuario : ${usuarios}" th:value="${usuario.idusuario}" th:text="${usuario.nombre}"></option>
+                                                    </select>
+                                                </div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label for="buscar">Product</label>
+													<input type="text" class="form-control" name="buscar" id="buscar">
+												</div>
+											</div>
+										</div>
+										
+										<table th:replace="pages/documents/bills/plantilla-items :: itemsFactura">
+
+										</table>
+										
+										<table id="cargarItemsProductos" class="table table-sm table-striped table-hover">
+											<thead>
+												<th>Product</th>
+												<th>Sale Price</th>
+												<th>Quantity</th>
+												<th>Subtotal</th>
+												<th>Delete</th>
+											</thead>
+											<tbody>
+
+											</tbody>
+										</table>
+										<h5>Total: <span class="badge badge-secondary" id="gran_total" name="gran_total">0</span></h5>
+									</div><!--End card body-->
+
+									<div class="card-footer">
+										<button type="submit" class="btn btn-primary">Save</button>
+									</div>
+
+								</form> <!-- Form End -->
+							</div>
+							<!-- Card End -->
+						</div>
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer th:insert="shared/footer :: footer" class="main-footer"></footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+
+	<!-- jQuery -->
+	<script th:src="@{../../plugins/jquery/jquery.min.js}"></script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- AdminLTE App -->
+    <script th:src="@{../../dist/js/adminlte.min.js}"></script>
+    <!-- Select2 -->
+	<script th:src="@{../../plugins/select2/js/select2.full.min.js}"></script>
+	
+	<script th:src="@{../../plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<script th:replace="pages/documents/bills/js/autocomplete :: javascript"></script>
+    <script>
+        $(function(){
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+            	theme: 'bootstrap4'
+            })
+        });
+    </script>
+</body>
+</html>
