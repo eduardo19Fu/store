@@ -19,12 +19,12 @@ public class DetalleDocumento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long iddetalle;
-
+	
 	private Integer cantidad;
 	private Double subtotal;
 	private Double descuento;
 	private String serie;
-	
+
 	@Column(name = "nprecio_venta")
 	private Double nprecioVenta;
 
@@ -87,13 +87,14 @@ public class DetalleDocumento implements Serializable {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-	
+
 	public Double calcularSubtotal() {
 		return this.cantidad.doubleValue() * producto.getPrecioventa();
 	}
-	
+
 	public Double calcularDescuento(Double valorDescuento) {
-		Double porcentajeDescuento = valorDescuento/100; 
+		@SuppressWarnings("unused")
+		Double porcentajeDescuento = valorDescuento / 100;
 		return null;
 	}
 
@@ -102,6 +103,5 @@ public class DetalleDocumento implements Serializable {
 	}
 
 	private static final long serialVersionUID = 1L;
-
 
 }

@@ -56,4 +56,10 @@ public class Cliente {
 		this.nit = nit;
 	}
 
+	@Override
+	public String toString() {
+		return "Cliente [idcliente=" + idcliente + ", nombre=" + nombre + ", direccion=" + direccion + ", nit=" + nit
+				+ "]";
+	}
+
 }

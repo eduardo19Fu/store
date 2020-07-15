@@ -160,7 +160,7 @@
 												<div class="form-group">
 													<label for="estado">Status</label>
 													<select class="form-control" th:field="*{estado.idestado}" name="estado" id="estado">
-														<option th:each="status : ${states}" th:value="${status.idestado}" th:text="${status.nombreestado}"></option>
+														<option th:each="status : ${states}" th:value="${status.idestado}" th:text="${status.nombreEstado}"></option>
 													</select>
 												</div>
 											</div>

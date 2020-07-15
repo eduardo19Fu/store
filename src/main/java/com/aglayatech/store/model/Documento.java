@@ -26,7 +26,7 @@ public class Documento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idtransaccion;
+	private Long idtransaccion;
 
 	@Column(name = "no_documento")
 	private Integer noDocumento;
@@ -42,8 +42,9 @@ public class Documento implements Serializable {
 	private Cliente cliente;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idvendedor")
+	@JoinColumn(name = "idusuario")
 	private Usuario usuario;
+	
 	private String serie;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -54,11 +55,12 @@ public class Documento implements Serializable {
 	@JoinColumn(name = "tipo_documento")
 	private TipoDocumento tipoDocumento;
 
-	@OneToMany(mappedBy = "iddetalle", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idtransaccion")
 	private List<DetalleDocumento> detalleDocumento;
 
 	public Documento() {
-		this.detalleDocumento = new ArrayList<>();
+		this.detalleDocumento = new ArrayList<DetalleDocumento>();
 	}
 
 	@PrePersist
@@ -66,11 +68,11 @@ public class Documento implements Serializable {
 		this.fechaEmision = new Date();
 	}
 
-	public Integer getIdtransaccion() {
+	public Long getIdtransaccion() {
 		return idtransaccion;
 	}
 
-	public void setIdtransaccion(Integer idtransaccion) {
+	public void setIdtransaccion(Long idtransaccion) {
 		this.idtransaccion = idtransaccion;
 	}
 
@@ -138,10 +140,6 @@ public class Documento implements Serializable {
 		this.tipoDocumento = tipoDocumento;
 	}
 
-	public void addItemDocumento(DetalleDocumento item) {
-		this.detalleDocumento.add(item);
-	}
-
 	public List<DetalleDocumento> getDetalleDocumento() {
 		return detalleDocumento;
 	}
@@ -149,11 +147,15 @@ public class Documento implements Serializable {
 	public void setDetalleDocumento(List<DetalleDocumento> detalleDocumento) {
 		this.detalleDocumento = detalleDocumento;
 	}
+	
+	public void addDetalleDocumento(DetalleDocumento item) {
+		this.detalleDocumento.add(item);
+	}
 
 	public Double calcularTotal() {
 		Double total = 0.00;
 
-		for (int i = 0; i < detalleDocumento.size(); i++) {
+		for (int i = 0; i < getDetalleDocumento().size(); i++) {
 			total += detalleDocumento.get(i).calcularSubtotal();
 		}
 
@@ -161,5 +163,13 @@ public class Documento implements Serializable {
 	}
 
 	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return "Documento [idtransaccion=" + idtransaccion + ", noDocumento=" + noDocumento + ", fechaEmision="
+				+ fechaEmision + ", total=" + total + ", cliente=" + cliente + ", usuario=" + usuario + ", serie="
+				+ serie + ", estado=" + estado + ", tipoDocumento=" + tipoDocumento + ", detalleDocumento="
+				+ detalleDocumento + "]";
+	}
 
 }

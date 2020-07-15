@@ -30,11 +30,11 @@ public class Producto {
 	@Temporal(TemporalType.DATE)
 	private Date fechavencimiento;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idfabricante")
 	private Fabricante fabricante;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idfamilia")
 	private Familia familia;
 
@@ -44,7 +44,7 @@ public class Producto {
 	private Integer stuckminimotienda;
 	private Integer stuckminimobodega;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "estado")
 	private Estado estado;
 

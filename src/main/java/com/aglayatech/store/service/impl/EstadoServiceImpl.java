@@ -32,7 +32,7 @@ public class EstadoServiceImpl implements IEstadoService {
 
 	@Override
 	public Estado buscarPorEstado(String estado) {
-		return repoEstado.findByNombreestado(estado);
+		return repoEstado.findByNombreEstado(estado);
 	}
 
 }

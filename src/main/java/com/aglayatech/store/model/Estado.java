@@ -1,5 +1,6 @@
 package com.aglayatech.store.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,9 @@ public class Estado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idestado;
-	private String nombreestado;
+	
+	@Column(name = "nombre_estado")
+	private String nombreEstado;
 	private String categoria;
 
 	public Integer getIdestado() {
@@ -24,12 +27,12 @@ public class Estado {
 		this.idestado = idestado;
 	}
 
-	public String getNombreestado() {
-		return nombreestado;
+	public String getNombreEstado() {
+		return nombreEstado;
 	}
 
-	public void setNombreestado(String nombreestado) {
-		this.nombreestado = nombreestado;
+	public void setNombreEstado(String nombreEstado) {
+		this.nombreEstado = nombreEstado;
 	}
 
 	public String getCategoria() {
@@ -42,7 +45,7 @@ public class Estado {
 
 	@Override
 	public String toString() {
-		return "Estado [idestado=" + idestado + ", nombreestado=" + nombreestado + ", categoria=" + categoria + "]";
+		return "Estado [idestado=" + idestado + ", nombreestado=" + nombreEstado + ", categoria=" + categoria + "]";
 	}
 
 }

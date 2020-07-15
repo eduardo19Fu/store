@@ -31,4 +31,9 @@ public class TipoDocumento {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoDocumento [idtipodocumento=" + idtipodocumento + ", nombre=" + nombre + "]";
+	}
+
 }

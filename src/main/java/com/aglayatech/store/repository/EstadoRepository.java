@@ -9,9 +9,9 @@ import com.aglayatech.store.model.Estado;
 
 public interface EstadoRepository extends JpaRepository<Estado, Integer> {
 	
-	Estado findByNombreestado(String estado);
+	Estado findByNombreEstado(String estado);
 	
-	@Query("select e from Estado e where e.categoria = 'Producto' order by e.nombreestado asc")
+	@Query("select e from Estado e where e.categoria = 'Producto' order by e.nombreEstado asc")
 	List<Estado> findAllStatus();
 	
 }

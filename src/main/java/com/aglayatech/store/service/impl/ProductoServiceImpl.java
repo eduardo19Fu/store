@@ -31,12 +31,16 @@ public class ProductoServiceImpl implements IProductoService {
 	@Override
 	public void guardar(Producto producto) {
 		repoProducto.save(producto);
-
 	}
 
 	@Override
 	public void eliminar(Integer idproducto) {
 		repoProducto.deleteById(idproducto);
+	}
+
+	@Override
+	public List<Producto> buscarPorCodigoONombre(String texto) {
+		return repoProducto.findByCodigoOrNombreproducto(texto);
 	}
 
 }
