@@ -1,7 +1,7 @@
 <aside th:fragment="menu-lateral" class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
 	<a th:href="@{/}" class="brand-link"> 
-		<img th:src="@{../../dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+		<img th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 		<span class="brand-text font-weight-light">Store</span>
 	</a>
 
@@ -83,7 +83,7 @@
 				</a>
 				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a th:href="@{/documents/bills/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/bills/index' ? 'active' : ''}">
+						<a th:href="@{/documents/bills/index}" class="nav-link" th:classappend="${#request.getRequestURI().startsWith('/documents/bills') ? 'active' : ''}">
 							<i class="far fa-circle nav-icon"></i>
 							<p>Bills</p>
 						</a>
@@ -99,7 +99,41 @@
 			<!-- END MENU DOCUMENTS -->
 
 			<!-- MENU DISPATCH-->
+			<li class="nav-item has-treeview" th:classappend="${#request.getRequestURI().startsWith('/dispatch') ? 'menu-open' : ''}">
+				<a href="#" class="nav-link" th:classappend="${#request.getRequestURI().startsWith('/dispatch') ? 'active' : ''}">
+					<i class="nav-icon fas fa-box"></i>
+					<p>
+						Dispatch Orders <i class="right fas fa-angle-left"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
+						<a th:href="@{/documents/bills/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/bills/index' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Orders</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{/documents/quotes/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/quotes/index' ? 'active' : ''}">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Create Order</p>
+						</a>
+					</li>
+				</ul>
+			</li>
 			<!-- END MENU DISPATCH-->
+
+			<!-- MENU CORRELATIVOS -->
+
+			<!-- END MENU CORRELATIVOS -->
+			<li class="nav-item">
+				<a th:href="@{/users/correlatives/index}" class="nav-link" th:classappend="${#request.getRequestURI().startsWith('/users/correlatives') ? 'active' : ''}">
+					<i class="nav-icon fas fa-coins"></i>
+					<p>
+						Correlatives
+					</p>
+				</a>
+			</li>
 
 			<!-- MENU PRODUCT FAMILIES -->
 			<li class="nav-item">

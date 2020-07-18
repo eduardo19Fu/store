@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>Store | New Bill</title>
+	<title>Store | New Correlative</title>
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
@@ -25,13 +25,13 @@
 	<link rel="stylesheet" th:href="@{/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
 	<!-- Bootstrap4 Duallistbox -->
 	<link rel="stylesheet" th:href="@{/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css}">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
 	<!-- Theme style -->
 	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-	<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
-
+	
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -49,8 +49,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">Nueva Factura</h1>
+						<div class="container">
+							<h1 class="m-0 text-dark">Crear Correlativo</h1>
 						</div>
 						<!-- /.col -->
 
@@ -71,68 +71,55 @@
 								<!-- Card Start -->
 								<div class="card card-success">
 									<div class="card-header">
-										<h3 class="card-title">Completa todos los campos</h3>
+										<h3 class="card-title">Full all the fields</h3>
 									</div>
 									<!-- Form Start -->
-									<form th:action="@{/documents/bills/save}" method="POST" th:object="${documento}">
+									<form th:action="@{/users/correlatives/save}" method="POST" th:object="${usuarioCorrelativo}">
 										<div class="card-body">
 											<div class="row">
-												<dv class="col-sm-6">
-													<div class="form-group">
-														<label for="correlativo">Correlativo</label>
-														<input type="text" class="form-control" th:value="${correlativo.correlativoActual}" disabled>
-													</div>
-												</dv>
-												<div class="col-sm-6">
-													<div class="form-group">
-														<label for="seller">Seller</label>
-														<select th:field="*{usuario.idusuario}"
-															class="form-control select2" style="width: 100%;">
-															<option th:value="${null}" selected>Choose a User</option>
-															<option th:each="usuario : ${usuarios}"
-																th:value="${usuario.idusuario}"
-																th:text="${usuario.nombre}"></option>
-														</select>
-													</div>
-												</div>
 												<div class="col-sm-12">
 													<div class="form-group">
-														<label for="client">Client</label>
-														<select th:field="*{cliente.idcliente}"
-															class="form-control select2" style="width: 100%;">
-															<option th:value="${null}" selected>Choose a Client</option>
-															<option th:each="cliente : ${clientes}"
-																th:value="${cliente.idcliente}"
-																th:text="${cliente.nombre}"></option>
+														<label for="client">Users</label>
+														<input type="hidden" th:field="*{idcorrelativo}">
+														<select class="form-control select2" style="width: 100%;" th:field="*{usuario.idusuario}">
+															<option th:value="${null}" selected>Choose a User</option>
+															<option th:each="user : ${users}"
+																th:value="${user.idusuario}"
+																th:text="${user.usuario}">
+															</option>
 														</select>
 													</div>
 												</div>
-												
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label for="buscar">Product</label>
-														<input type="text" class="form-control" name="buscar"
-															id="buscar">
+														<label for="correlativo_inicial">Correlativo Inicial</label>
+														<input type="number" class="form-control" th:field="*{correlativoInicial}" name="correlativo_inicial" id="correlativo_inicial">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="correlativo_final">Correlativo Final</label>
+														<input type="number" class="form-control" th:field="*{correlativoFinal}" name="correlativo_final" id="correlativo_final">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="serie">Serie</label>
+														<input type="text" class="form-control" th:field="*{serie}" name="serie" id="serie">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="estado">Estado</label>
+														<select class="form-control select2" style="width: 100%;" th:field="*{estado.idestado}">
+															<option th:each="estado : ${status}"
+																th:value="${estado.idestado}"
+																th:text="${estado.nombreEstado}">
+															</option>
+														</select>
 													</div>
 												</div>
 											</div>
-
-											<table th:replace="pages/documents/bills/plantilla-items :: itemsFactura">
-
-											</table>
-
-											<table id="cargarItemsProductos" class="table table-sm table-striped table-hover">
-												<thead>
-													<th>Product</th>
-													<th>Sale Price</th>
-													<th>Quantity</th>
-													<th>Subtotal</th>
-													<th>Delete</th>
-												</thead>
-												<tbody>
-
-												</tbody>
-											</table>
 										</div>
 										<!--End card body-->
 
@@ -140,10 +127,7 @@
 											<div class="container">
 												<div class="row">
 													<div class="col">
-														<button type="submit" class="btn bg-gradient-primary btn-lg">Save</button>
-													</div>
-													<div class="col">
-														<h5>Total: <span class="badge badge-secondary" id="gran_total" name="gran_total">0</span></h5>
+														<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
 													</div>
 												</div>
 											</div>
@@ -178,9 +162,6 @@
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
 	<!-- Select2 -->
 	<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
-
-	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
-	<script th:replace="pages/documents/bills/js/autocomplete :: javascript"></script>
 	<script>
 		$(function () {
 			$('.select2').select2()

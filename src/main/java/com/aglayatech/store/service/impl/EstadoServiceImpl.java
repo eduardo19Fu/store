@@ -17,8 +17,8 @@ public class EstadoServiceImpl implements IEstadoService {
 	private EstadoRepository repoEstado;
 	
 	@Override
-	public List<Estado> buscarTodos() {
-		return repoEstado.findAllStatus();
+	public List<Estado> buscarTodos(String categoria) {
+		return repoEstado.findAllStatus(categoria);
 	}
 
 	@Override

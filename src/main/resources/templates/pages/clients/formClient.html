@@ -2,21 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>Store | New Client</title>
+	<title>Store | New Client</title>
 
 	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" th:href="@{../../plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
 	<!-- Ionicons -->
-	<link rel="stylesheet"href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" th:href="@{../../dist/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
@@ -29,11 +30,12 @@
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
+			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">Register a New Client</h1>
+						<div class="container">
+							<h1 class="m-0 text-dark">Registrar Nuevo Cliente</h1>
 						</div>
 						<!-- /.col -->
 
@@ -48,50 +50,59 @@
 			<section class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-12">
-							<!-- REGISTER PRODUCT -->
-							<!-- Card Start -->
-							<div class="card card-success">
-								<div class="card-header">
-									<h3 class="card-title">Full all the fields</h3>
-								</div>
-								<!-- Form Start -->
-								<form th:action="@{/clients/save}" method="post" th:object="${cliente}">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label for="nombre">Name</label>
-													<input type="hidden" th:field="*{idcliente}">
-													<input type="text" class="form-control" th:field="*{nombre}" name="nombre" id="nombre" placeholder="Enter Client Name" required>
-                                                </div>
-											</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="address">Address</label>
-                                                    <input type="text" class="form-control" th:field="*{direccion}" name="address" id="address" placeholder="Enter Client Address" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="nit">NIT</label>
-                                                    <input type="text" class="form-control" th:field="*{nit}" name="nit" id="nit" placeholder="Enter Client NIT" required>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div><!--End card body-->
-
-									<div class="card-footer">
-										<button type="submit" class="btn btn-primary col-sm-12">Save</button>
+						<div class="container">
+							<div class="col-md-12">
+								<!-- REGISTER PRODUCT -->
+								<!-- Card Start -->
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">Full all the fields</h3>
 									</div>
+									<!-- Form Start -->
+									<form th:action="@{/clients/save}" method="post" th:object="${cliente}">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="nombre">Nombre</label>
+														<input type="hidden" th:field="*{idcliente}">
+														<input type="text" class="form-control" th:field="*{nombre}"
+															name="nombre" id="nombre" placeholder="Enter Client Name"
+															required>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="nit">NIT</label>
+														<input type="text" class="form-control" th:field="*{nit}"
+															name="nit" id="nit" placeholder="Enter Client NIT" required>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label for="address">Dirección</label>
+														<input type="text" class="form-control" th:field="*{direccion}"
+															name="address" id="address"
+															placeholder="Enter Client Address" required>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												
+											</div>
+										</div>
+										<!--End card body-->
 
-								</form> <!-- Form End -->
+										<div class="card-footer">
+											<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+										</div>
+
+									</form> <!-- Form End -->
+								</div>
+								<!-- Card End -->
 							</div>
-							<!-- Card End -->
 						</div>
 					</div>
 					<!-- /.row -->
@@ -110,10 +121,11 @@
 	<!-- REQUIRED SCRIPTS -->
 
 	<!-- jQuery -->
-	<script th:src="@{../../plugins/jquery/jquery.min.js}"></script>
+	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 	<!-- Bootstrap 4 -->
-	<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<!-- AdminLTE App -->
-	<script th:src="@{../../dist/js/adminlte.min.js}"></script>
+	<script th:src="@{/dist/js/adminlte.min.js}"></script>
 </body>
+
 </html>

@@ -28,12 +28,13 @@ import com.aglayatech.store.model.Documento;
 import com.aglayatech.store.model.Producto;
 import com.aglayatech.store.model.TipoDocumento;
 import com.aglayatech.store.model.Usuario;
+import com.aglayatech.store.model.UsuarioCorrelativo;
 import com.aglayatech.store.service.IClienteService;
-import com.aglayatech.store.service.IDetalleDocumentoService;
 import com.aglayatech.store.service.IDocumentoService;
 import com.aglayatech.store.service.IEstadoService;
 import com.aglayatech.store.service.IProductoService;
 import com.aglayatech.store.service.ITipoDocumentoService;
+import com.aglayatech.store.service.IUsuarioCorrelativoService;
 import com.aglayatech.store.service.IUsuarioService;
 
 
@@ -59,6 +60,9 @@ public class DocumentoController {
 	@Autowired
 	private IEstadoService serviceEstado;
 	
+	@Autowired
+	private IUsuarioCorrelativoService serviceCorrelativo;
+	
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@GetMapping(value = "/bills/index")
@@ -72,7 +76,12 @@ public class DocumentoController {
 	}
 	
 	@GetMapping(value = "/bills/create")
-	public String createBill(Documento documento) {
+	public String createBill(Documento documento, Model model) {
+		Usuario usuario = serviceUsuario.buscarPorId(1);
+		UsuarioCorrelativo correlativo = serviceCorrelativo.buscarPorUsuario(usuario);
+		
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("correlativo", correlativo);
 		return "pages/documents/bills/form";
 	}
 	
@@ -81,10 +90,10 @@ public class DocumentoController {
 							BindingResult result,
 							@RequestParam(name = "item_id[]", required = false) Long[] itemId, 
 							@RequestParam(name = "cantidad[]", required = false) Integer[] cantidad,
-							@RequestParam(name = "total_importe[]", required = false) Double[] totalImporte,
 							RedirectAttributes attributes) {
 		
 		var total = 0.0;
+		
 		
 		documento.setNoDocumento(252525252);
 		documento.setSerie("A");
@@ -115,7 +124,7 @@ public class DocumentoController {
 		serviceDocumento.guardar(documento);
 		
 		
-		attributes.addFlashAttribute("mensaje", "Factura creada con éxito!");
+		attributes.addFlashAttribute("message", "Factura creada con éxito!");
 		
 		return "redirect:/documents/bills/index";
 	}

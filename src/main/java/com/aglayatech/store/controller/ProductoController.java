@@ -104,7 +104,7 @@ public class ProductoController {
 	
 	@ModelAttribute
 	public void getEstados(Model model) {
-		List<Estado> states = serviceEstado.buscarTodos();
+		List<Estado> states = serviceEstado.buscarTodos("Producto");
 		model.addAttribute("states", states);
 	}
 	

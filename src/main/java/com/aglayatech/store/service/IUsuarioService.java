@@ -6,6 +6,7 @@ import com.aglayatech.store.model.Usuario;
 
 public interface IUsuarioService {
 	
-	List<Usuario> buscarTodos();
+	public List<Usuario> buscarTodos();
+	public Usuario buscarPorId(Integer idusuario);
 
 }

@@ -25,7 +25,7 @@ public class FabricanteServiceImpl implements IFabricanteService {
 	@Override
 	public Fabricante buscarPorId(Integer idfabricante) {
 		Optional<Fabricante> optional = repoFabricante.findById(idfabricante);
-		return optional.orElseThrow(() -> new ObjetoNoEncontradoException(String.valueOf(idfabricante)));
+		return optional.orElseThrow(() -> new ObjetoNoEncontradoException(idfabricante.toString()));
 	}
 
 	@Override
