@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.aglayatech.store.errorhandler.ObjetoNoEncontradoException;
 import com.aglayatech.store.model.Documento;
+import com.aglayatech.store.model.Estado;
 import com.aglayatech.store.model.TipoDocumento;
 import com.aglayatech.store.repository.DocumentoRepository;
 import com.aglayatech.store.service.IDocumentoService;
@@ -48,6 +49,11 @@ public class DocumentoServiceImpl implements IDocumentoService {
 	@Override
 	public Long documentoMaxTransaccion() {
 		return repoDocumento.documentoMaxTransaccion();
+	}
+
+	@Override
+	public Long countFacturas(TipoDocumento tipoDocumento, Estado estado) {
+		return repoDocumento.countFacturas(tipoDocumento, estado);
 	}
 
 }

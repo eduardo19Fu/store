@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>Store | Neva factura</title>
+	<title>Store | Neva orden</title>
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
@@ -50,7 +50,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="container">
-							<h1 class="m-0 text-dark">Nueva Factura</h1>
+							<h1 class="m-0 text-dark">Nueva Orden de Despacho</h1>
 						</div>
 						<!-- /.col -->
 
@@ -74,62 +74,42 @@
 										<h3 class="card-title">Completa todos los campos</h3>
 									</div>
 									<!-- Form Start -->
-									<form th:action="@{/documents/bills/save}" method="POST" th:object="${documento}">
+									<form th:action="@{/dispatch/save}" method="POST" th:object="${ordenDespacho}">
 										<div class="card-body">
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label for="correlativo">Correlativo</label>
-														<input type="text" name="correlativo" class="form-control" th:value="${correlativo.correlativoActual}" disabled>
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="form-group">
-														<label for="seller">Vendedor</label>
+														<label for="seller">Usuario</label>
 														<select th:field="*{usuario.idusuario}"
 															class="form-control select2" style="width: 100%;">
-															<option th:value="${null}" selected>Elija usuario</option>
+															<option th:value="${null}" selected>Choose a User</option>
 															<option th:each="usuario : ${usuarios}"
 																th:value="${usuario.idusuario}"
 																th:text="${usuario.nombre}"></option>
 														</select>
 													</div>
-												</div>
-												<div class="col-sm-12">
-													<div class="form-group">
-														<label for="client">Client</label>
-														<select th:field="*{cliente.idcliente}"
-															class="form-control select2" style="width: 100%;">
-															<option th:value="${null}" selected>Elija un cliente</option>
-															<option th:each="cliente : ${clientes}"
-																th:value="${cliente.idcliente}"
-																th:text="${cliente.nombre}"></option>
-														</select>
-													</div>
-												</div>
-												
-												<div class="col-sm-6">
+                                                </div>
+                                                
+                                                <div class="col-sm-6">
 													<div class="form-group">
 														<label for="buscar">Producto</label>
 														<input type="text" class="form-control" name="buscar"
 															id="buscar">
 													</div>
-												</div>
-											</div>
+                                                </div>
+                                            </div>
 
-											<table th:replace="pages/documents/bills/plantilla-items :: itemsFactura">
+											<table th:replace="pages/dispatch/plantilla-items :: itemsDispatch">
 
 											</table>
 
 											<table id="cargarItemsProductos" class="table table-sm table-striped table-hover">
 												<thead>
-													<tr>
-														<th>Product</th>
-														<th>Sale Price</th>
-														<th>Quantity</th>
-														<th>Subtotal</th>
-														<th>Delete</th>
-													</tr>
+													<th>Código</th>
+													<th>Producto</th>
+													<th>Cantidad</th>
+													<th>Stuck Tienda</th>
+													<th>Stuck Bodega</th>
 												</thead>
 												<tbody>
 
@@ -142,10 +122,7 @@
 											<div class="container">
 												<div class="row">
 													<div class="col">
-														<button type="submit" class="btn bg-gradient-primary btn-lg">Save</button>
-													</div>
-													<div class="col">
-														<h5>Total: <span class="badge badge-secondary" id="gran_total" name="gran_total">0</span></h5>
+														<button type="submit" class="btn bg-gradient-primary btn-lg">Guardar</button>
 													</div>
 												</div>
 											</div>
@@ -182,7 +159,7 @@
 	<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
 
 	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
-	<script th:replace="pages/documents/bills/js/autocomplete :: javascript"></script>
+	<script th:replace="pages/dispatch/js/autocomplete :: javascript"></script>
 	<script>
 		$(function () {
 			$('.select2').select2()

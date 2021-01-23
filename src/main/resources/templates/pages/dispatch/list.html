@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>Store | Listado de Facturas</title>
+<title>Store | Listado de Ordenes</title>
 
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
@@ -34,7 +34,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<a th:href="@{/documents/bills/create}" class="btn bg-gradient-success">
+							<a th:href="@{/dispatch/create}" class="btn bg-gradient-success">
 								<i class="fas fa-plus-square"></i>&nbsp; Nueva
 							</a>
 						</div>
@@ -57,33 +57,27 @@
 
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Facturas</h3>
+								<h3 class="card-title">Ordenes de Despacho Creadas</h3>
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body table-responsive">
 								<table id="productos_table" class="table table-bordered table-striped text-nowrap">
 									<thead>
 										<tr>
-											<th>Trans</th>
-											<th>No. Factura</th>
-											<th>Fecha</th>
-											<th>Cliente</th>
-											<th>Vendedor</th>
-											<th>Serie</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
+											<th>No. Orden</th>
+											<th>Estado</th>
+											<th>Fecha de Creación</th>
+											<th>Creador</th>
+											<th>Actions</th>
 											
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="bill : ${bills}">
-											<td th:text="${bill.idtransaccion}"></td>
-											<td th:text="${bill.noDocumento}"></td>
-											<td th:text="${bill.fechaEmision}"></td>
-											<td th:text="${bill.cliente.nombre}"></td>
-											<td th:text="${bill.usuario.nombre}"></td>
-											<td th:text="${bill.serie}"></td>
-											<td th:text="${bill.estado.nombreEstado}"></td>
+										<tr th:each="order : ${orders}">
+											<td th:text="${order.idorden}"></td>
+											<td th:text="${order.estado.nombreEstado}"></td>
+											<td th:text="${order.fechaCreacion}"></td>
+											<td th:text="${order.usuario.usuario}"></td>
 											<td>
 												<a href="#" class="btn bg-gradient-danger" data-toggle="tooltip" data-placement="top" title="Cancel Bill">
 													<i class="fas fa-ban"></i>

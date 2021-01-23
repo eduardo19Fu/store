@@ -108,13 +108,13 @@
 				</a>
 				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a th:href="@{/documents/bills/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/bills/index' ? 'active' : ''}">
+						<a th:href="@{/dispatch/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/dispatch/index' ? 'active' : ''}">
 							<i class="far fa-circle nav-icon"></i>
 							<p>Orders</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a th:href="@{/documents/quotes/index}" class="nav-link" th:classappend="${#request.getRequestURI() == '/documents/quotes/index' ? 'active' : ''}">
+						<a th:href="@{/dispatch/create}" class="nav-link" th:classappend="${#request.getRequestURI() == '/dispatch/create' ? 'active' : ''}">
 							<i class="far fa-circle nav-icon"></i>
 							<p>Create Order</p>
 						</a>

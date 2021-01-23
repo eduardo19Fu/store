@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.aglayatech.store.model.Documento;
+import com.aglayatech.store.model.Estado;
 import com.aglayatech.store.model.TipoDocumento;
 
 public interface DocumentoRepository extends JpaRepository<Documento, Long> {
@@ -26,5 +27,9 @@ public interface DocumentoRepository extends JpaRepository<Documento, Long> {
 	// Recupera la transaccion maxima generada
 	@Query("Select max(d.idtransaccion) from Documento d")
 	Long documentoMaxTransaccion();
+	
+	// Cuenta la cantidad de facturas activas en la base de datos
+	@Query("Select count(d) from Documento d where d.tipoDocumento = :tipo and d.estado != :estado")
+	Long countFacturas(@Param("tipo") TipoDocumento tipo, @Param("estado") Estado estado);
 	
 }

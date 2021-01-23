@@ -12,5 +12,8 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 	
 	@Query("Select p from Producto p where p.nombreproducto like %:texto%")
 	public List<Producto> findByCodigoOrNombreproducto(@Param("texto") String texto);
+	
+	@Query("Select count(p) from Producto p")
+	public Integer countProductos();
 
 }

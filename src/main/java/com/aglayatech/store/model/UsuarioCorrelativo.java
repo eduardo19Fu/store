@@ -105,6 +105,11 @@ public class UsuarioCorrelativo implements Serializable {
 	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
+	
+	// Método que devuelve el correlativo actualizado
+	public Long aumentarCorrelativo() {
+		 return (this.correlativoActual+1);
+	}
 
 	private static final long serialVersionUID = 1L;
 

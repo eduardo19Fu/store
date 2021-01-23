@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <table th:fragment="itemsDispatch" class="d-none">
+        <tbody id="plantillaItemsDispatch">
+            <tr id="row_{ID}">
+                <td class="d-none"><input type="hidden" value="{ID}" name="item_id[]"></td>
+                <td>{CODIGO}</td>
+                <td>{NOMBRE}</td>
+                <td><input type="number" value="1" name="cantidad[]" id="cantidad_{ID}" class="form-control col-sm-4"></td>
+                <td>{STUCKTIENDA}</td>
+                <td>{STUCKBODEGA}</td>
+                <td><a href="#" class="btn bg-gradient-danger btn-sm" onclick="itemsHelper.eliminarFila({ID});">X</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

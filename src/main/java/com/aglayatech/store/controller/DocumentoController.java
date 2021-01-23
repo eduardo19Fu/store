@@ -85,6 +85,7 @@ public class DocumentoController {
 		return "pages/documents/bills/form";
 	}
 	
+	// Método controlador de la inserción de facturas nuevas
 	@PostMapping(value = "/bills/save")
 	public String saveBill(Documento documento,
 							BindingResult result,
@@ -92,11 +93,14 @@ public class DocumentoController {
 							@RequestParam(name = "cantidad[]", required = false) Integer[] cantidad,
 							RedirectAttributes attributes) {
 		
+		Usuario usuario = serviceUsuario.buscarPorId(1);
+		UsuarioCorrelativo correlativo = serviceCorrelativo.buscarPorUsuario(usuario);
+		
 		var total = 0.0;
 		
 		
-		documento.setNoDocumento(252525252);
-		documento.setSerie("A");
+		documento.setNoDocumento(correlativo.getCorrelativoActual().intValue());
+		documento.setSerie(correlativo.getSerie());
 		documento.setEstado(serviceEstado.buscarPorId(2));
 		documento.setTipoDocumento(serviceTipoDocumento.buscarPorId(1));
 		
@@ -109,12 +113,10 @@ public class DocumentoController {
 			linea.setCantidad(cantidad[i]);
 			linea.setSubtotal(linea.calcularSubtotal());
 			linea.setDescuento(0.00);
-			linea.setSerie("A");
+			linea.setSerie(correlativo.getSerie());
 			linea.setNprecioVenta(0.00);
 			
 			documento.addDetalleDocumento(linea);
-			
-			
 			
 			log.info("ID: " + itemId[i].toString() + ", cantidad: " + cantidad[i].toString());
 		}
@@ -122,6 +124,9 @@ public class DocumentoController {
 		total = documento.calcularTotal();
 		documento.setTotal(total);
 		serviceDocumento.guardar(documento);
+		
+		correlativo.setCorrelativoActual(correlativo.aumentarCorrelativo());
+		serviceCorrelativo.guardar(correlativo);
 		
 		
 		attributes.addFlashAttribute("message", "Factura creada con éxito!");

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<script type="text/javascript" th:fragment="javascript">
+		$(document).ready(function(){
+			$("#buscar").autocomplete({
+				source: function(request, response){
+					$.ajax({
+						url: "/dispatch/load-products/" + request.term,
+						dataType: "json",
+						data: {
+							term: request.term
+						},
+						success: function(data){ // Función que recibe los datos en formato json y se pasan al autocomplete
+							response($.map(data, function(item){
+								return {
+									value: item.idproducto,
+									label: item.nombreproducto,
+									codigo: item.codigo,
+									// precio: item.precioventa,
+									stuckTienda: item.stucktienda,
+									stuckBodega: item.stuckbodega,
+								};
+							}));
+						},
+					});
+				},
+				select: function(event, ui){ // Función que realiza la insersión de las filas a la tabla en la vista
+					//$("#buscar").val(ui.item.label);
+
+					if(itemsHelper.hasProducto(ui.item.value)){
+						itemsHelper.incrementaCantidad(ui.item.value, ui.item.stuckBodega)
+						return false;
+					}
+
+					var linea = $("#plantillaItemsDispatch").html(); // Obtiene el contenido html del tr de la tabla de la plantilla mediante su ID
+
+					linea = linea.replace(/{ID}/g, ui.item.value);
+					linea = linea.replace(/{CODIGO}/g, ui.item.codigo);
+					linea = linea.replace(/{NOMBRE}/g, ui.item.label);
+					// linea = linea.replace(/{PRECIO}/g, ui.item.precio);
+					linea = linea.replace(/{STUCKTIENDA}/g, ui.item.stuckTienda);
+					linea = linea.replace(/{STUCKBODEGA}/g, ui.item.stuckBodega);
+
+					$("#cargarItemsProductos tbody").append(linea);
+					// itemsHelper.calcularImporte(ui.item.value, ui.item.precio, 1);
+
+					document.getElementById("buscar").value = "";
+
+					return false;
+				}
+			});
+
+			// Linea que evita el error de conversion de String a Entero
+			$("form").submit(function(){
+				$("#plantillaItemsDispatch").remove();
+				return;
+			});
+		});
+
+		var itemsHelper = {
+			calcularImporte: function(id, precio, cantidad){
+				$("#total_importe_" + id).html(parseFloat(precio) * parseInt(cantidad));
+				this.calcularGranTotal();
+			},
+
+			hasProducto: function(id){
+				var resultado = false;
+				$('input[name="item_id[]"]').each(function(){
+					if(parseInt(id) == parseInt($(this).val())){
+						resultado = true;
+					}
+				});
+
+				return resultado;
+			},
+			
+			incrementaCantidad: function(id, stuckbodega){
+				var cantidad = $("#cantidad_" + id).val() ? parseInt($("#cantidad_" + id).val()) : 0;
+				$("#cantidad_" + id).val(++cantidad);
+				document.getElementById("buscar").value = "";
+			},
+
+			validarExistencias: function(id,sotuckbodega) {
+				// Función que determina si hay suficientes existencias
+				var cantidadActual = parseInt($("#cantidad_" + id.val()))
+			},
+
+			eliminarFila: function(id){
+				$("#row_" + id).remove(); // Elimina una fila determinada segun el ID
+				// this.calcularGranTotal();
+			},
+
+			calcularGranTotal: function(){
+				var total = 0;
+
+				$('span[id^="total_importe_"]').each(function(){
+					total += parseFloat($(this).html());
+				});
+
+				$("#gran_total").html(total);
+			}
+		};
+
+	</script>
+</body>
+</html>

@@ -8,14 +8,18 @@
 
 <title>Store | New Product</title>
 
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-	<!-- Google Font: Source Sans Pro -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -32,8 +36,8 @@
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0 text-dark">Create a Product Family</h1>
+						<div class="container">
+							<h1 class="m-0 text-dark">Create a Product Maker</h1>
 						</div>
 						<!-- /.col -->
 
@@ -48,45 +52,55 @@
 			<section class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-12">
-							<!-- REGISTER PRODUCT -->
-							<!-- Card Start -->
-							<div class="card card-success">
-								<div class="card-header">
-									<h3 class="card-title">Full all the fields</h3>
-								</div>
-								<!-- Form Start -->
-								<form th:action="@{/makers/save}" method="post" th:object="${fabricante}">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label for="fabricante">Maker Name</label>
-													<input type="hidden" th:field="*{idfabricante}">
-													<input type="text" class="form-control" th:field="*{nombrefabricante}" name="nombrefabricante" id="nombrefabricante" placeholder="Enter Product Maker Name" required>
+						<div class="container">
+							<div class="col-md-12">
+								<!-- Card Start -->
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">Full all the fields</h3>
+									</div>
+									<!-- Form Start -->
+									<form th:action="@{/makers/save}" method="post"
+										th:object="${fabricante}">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="fabricante">Maker Name</label> <input
+															type="hidden" th:field="*{idfabricante}"> <input
+															type="text" class="form-control"
+															th:field="*{nombrefabricante}" name="nombrefabricante"
+															id="nombrefabricante"
+															placeholder="Enter Product Maker Name" required>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label for="">Notes:</label>
-													<textarea th:field="*{observaciones}" class="form-control" name="" id="" cols="30" rows="3">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label for="">Notes:</label>
+														<textarea th:field="*{observaciones}" class="form-control"
+															name="" id="" cols="30" rows="3">
 
 													</textarea>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div><!--End card body-->
+										<!--End card body-->
 
-									<div class="card-footer">
-										<button type="submit" class="btn bg-gradient-primary col-sm-12">Save</button>
-									</div>
+										<div class="card-footer">
+											<button type="submit"
+												class="btn bg-gradient-primary btn-lg">Guardar</button>
+										</div>
 
-								</form> <!-- Form End -->
+									</form>
+									<!-- Form End -->
+								</div>
+								<!-- Card End -->
 							</div>
-							<!-- Card End -->
 						</div>
+						<!-- /.container -->
 					</div>
 					<!-- /.row -->
 				</div>

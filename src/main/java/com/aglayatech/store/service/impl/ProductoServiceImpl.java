@@ -43,4 +43,9 @@ public class ProductoServiceImpl implements IProductoService {
 		return repoProducto.findByCodigoOrNombreproducto(texto);
 	}
 
+	@Override
+	public Integer contarProductos() {
+		return repoProducto.countProductos();
+	}
+
 }

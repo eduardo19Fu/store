@@ -16,4 +16,6 @@ public interface IProductoService {
 	
 	public void eliminar(Integer idproducto);
 	
+	public Integer contarProductos();
+	
 }
